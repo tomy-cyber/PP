@@ -226,4 +226,11 @@ export function Onboarding({ onDone }: { onDone: () => void }) {
     </div>
   )
 }
-    
+          >
+            Back
+          </button>
+        )}
+      </div>
+    </div>
+  )
+}

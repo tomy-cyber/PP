@@ -335,3 +335,4 @@ export function flipReorder(targets: string, mutate: () => void) {
 }
 
 export const random = gsap.utils.random
+export const clamp = gsap.utils.clamp
