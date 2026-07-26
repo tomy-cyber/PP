@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  overscroll-behavior: none;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: #3c3c3c;
+  font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+  font-weight: 800;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+
+/* Hide scrollbars but keep scrolling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@layer components {
+  /* ---------- Duolingo 3D push button ---------- */
+  .btn3d {
+    @apply relative inline-flex items-center justify-center select-none
+           font-display font-extrabold uppercase tracking-wide
+           rounded-2xl px-5 py-3 text-white text-[15px] leading-none
+           transition-none;
+    border-bottom-width: 4px;
+    border-bottom-style: solid;
+    will-change: transform;
+  }
+  .btn3d:active,
+  .btn3d.is-pressed {
+    transform: translateY(4px);
+    border-bottom-width: 0px;
+    margin-bottom: 4px;
+  }
+  .btn3d[disabled] {
+    @apply bg-swan text-hare border-b-swan cursor-not-allowed;
+    transform: none;
+    border-bottom-width: 4px;
+    margin-bottom: 0;
+  }
+
+  .btn-green {
+    @apply bg-feather;
+    border-bottom-color: #58a700;
+  }
+  .btn-blue {
+    @apply bg-macaw;
+    border-bottom-color: #1899d6;
+  }
+  .btn-red {
+    @apply bg-cardinal;
+    border-bottom-color: #ea2b2b;
+  }
+  .btn-gold {
+    @apply bg-bee text-[#4B4B4B];
+    border-bottom-color: #e5a400;
+  }
+  .btn-purple {
+    @apply bg-beetle;
+    border-bottom-color: #a560e8;
+  }
+  .btn-ghost {
+    @apply bg-white text-macaw border-2 border-swan;
+    border-bottom-color: #e5e5e5;
+    border-bottom-width: 4px;
+  }
+
+  /* ---------- Option card (lesson answers) ---------- */
+  .opt-card {
+    @apply relative w-full rounded-2xl border-2 border-swan bg-white
+           px-4 py-4 text-left font-sans font-bold text-eel;
+    border-bottom-width: 4px;
+    transition: none;
+  }
+  .opt-card.selected {
+    @apply border-macaw bg-[#DDF4FF] text-macaw-dark;
+    border-bottom-color: #1899d6;
+  }
+  .opt-card.correct {
+    @apply border-feather bg-[#D7FFB8] text-feather-dark;
+    border-bottom-color: #58a700;
+  }
+  .opt-card.wrong {
+    @apply border-cardinal bg-[#FFDFE0] text-cardinal-dark;
+    border-bottom-color: #ea2b2b;
+  }
+
+  .card-soft {
+    @apply rounded-2xl border-2 border-swan bg-white;
+    border-bottom-width: 4px;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-pill px-3 py-1
+           font-display text-[13px] font-extrabold;
+  }
+}
+
+/* ---------- Lesson path node 3D ---------- */
+.node-3d {
+  position: relative;
+  width: 74px;
+  height: 66px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  will-change: transform;
+}
+.node-3d::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  transform: translateY(8px);
+  z-index: -1;
+}
+
+/* ---------- Confetti particle ---------- */
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 14px;
+  border-radius: 2px;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+/* ---------- Shimmer for locked / loading ---------- */
+.shimmer {
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 20%,
+    rgba(255, 255, 255, 0.65) 50%,
+    rgba(255, 255, 255, 0) 80%
+  );
+  background-size: 200% 100%;
+}
+
+/* ---------- Streak flame glow ---------- */
+.flame-glow {
+  filter: drop-shadow(0 0 10px rgba(255, 150, 0, 0.55));
+}
+
+.safe-top {
+  padding-top: calc(var(--safe-top) + 8px);
+}
+.safe-bottom {
+  padding-bottom: calc(var(--safe-bottom) + 8px);
+}
